@@ -10,8 +10,8 @@
     "react-router-dom": "^5.0.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --config build/webpack.dev.js --watch",
-    "build": "webpack --config build/webpack.prod.js"
+    "start": "ENV=development webpack-dev-server --config build/webpack.dev.js --watch --progress",
+    "build": "ENV=production webpack --config build/webpack.prod.js --progress"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,7 +30,10 @@
     "clean-webpack-plugin": "^2.0.1",
     "css-loader": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
     "style-loader": "^0.23.1",
+    "terser-webpack-plugin": "^1.2.3",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1",

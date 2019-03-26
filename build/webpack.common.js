@@ -1,11 +1,13 @@
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const path = require('path');
+const devMode = process.env.ENV !== 'production';
 
 module.exports = {
     entry: ['@babel/polyfill', './src/index.js'],
     output: {
-        filename: 'bundle.js',
+        filename: devMode ? 'bundle.js' : 'bundle.[hash].js',
         path: path.resolve(__dirname, '../dist')
     },
     module: {
@@ -24,7 +26,10 @@ module.exports = {
                 }
             }, {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
+                use: [
+                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    'css-loader'
+                ],
             }
         ]
     },
@@ -34,6 +39,10 @@ module.exports = {
             alwaysWriteToDisk: true,
             title: 'react-start-kit',
             template: './public/index.html'
+        }),
+        new MiniCssExtractPlugin({
+            filename: devMode ? '[name].css' : '[name].[hash].css',
+            chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
         })
     ]
 };
