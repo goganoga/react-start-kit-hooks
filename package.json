@@ -7,10 +7,11 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router": "^5.0.0",
-    "react-router-dom": "^5.0.0"
+    "react-router-dom": "^5.0.0",
+    "superagent": "^5.0.2"
   },
   "scripts": {
-    "start": "ENV=development webpack-dev-server --config build/webpack.dev.js --watch --progress",
+    "start": "ENV=development webpack-dev-server --config build/webpack.dev.js --progress",
     "build": "ENV=production webpack --config build/webpack.prod.js --progress"
   },
   "eslintConfig": {

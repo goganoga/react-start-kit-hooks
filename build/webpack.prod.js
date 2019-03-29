@@ -3,7 +3,7 @@ const common = require('./webpack.common.js');
 const TerserJSPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
-module.exports = merge({
+module.exports = merge(common, {
     mode: 'production',
     optimization: {
         minimizer: [
@@ -11,4 +11,4 @@ module.exports = merge({
             new OptimizeCSSAssetsPlugin({})
         ]
     },
-}, common);
+});
