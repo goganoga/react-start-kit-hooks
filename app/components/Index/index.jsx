@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react';
-import { Store } from '../utils/store';
-import { fetchDataAction } from '../actions';
-import './App.css';
+import { Store } from 'utils/store';
+import { fetchDataAction } from 'actions';
+import './style.css';
 
-const App = (props) => {
+const Index = (props) => {
 	let { state, dispatch } = useContext(Store);
     useEffect(() => {
         fetchDataAction(dispatch)
@@ -20,4 +20,4 @@ const App = (props) => {
     );
 }
 
-export default App;
+export default Index;

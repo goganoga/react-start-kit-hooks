@@ -5,7 +5,7 @@ const path = require('path');
 const devMode = process.env.ENV !== 'production';
 
 module.exports = {
-    entry: ['@babel/polyfill', './src/index.js'],
+    entry: ['@babel/polyfill', './app/index'],
     output: {
         filename: devMode ? 'bundle.js' : 'bundle.[hash].js',
         path: path.resolve(__dirname, '../dist')
@@ -13,7 +13,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.m?js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: 'babel-loader',
@@ -33,12 +33,16 @@ module.exports = {
             }
         ]
     },
+    resolve: {
+        modules: ['node_modules', 'app'],
+        extensions: ['.js', '.jsx', '.json']
+    },
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             alwaysWriteToDisk: true,
             title: 'react-start-kit',
-            template: './public/index.html'
+            template: './static/index.html'
         }),
         new MiniCssExtractPlugin({
             filename: devMode ? '[name].css' : '[name].[hash].css',
