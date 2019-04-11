@@ -19,24 +19,22 @@ async function request(method, actions, dispatch, url, data, ...otherArgs) {
         url += `${symbol}ts=${ts}`
     }
 
-    let resp;
-
     try {
-        resp = await superagent[method](url).send(data);
+        let resp = await superagent[method](url).send(data);
         dispatch({
             type: actions.SUCCESS,
             data: resp,
             params: otherArgs || []
         });
+        return resp;
     } catch(err) {
         dispatch({
             type: actions.FAILURE,
             err,
             params: otherArgs || []
         });
+        return err;
     }
-
-    return resp;
 }
 
 export function actionCreator(type, data, params = []) {
