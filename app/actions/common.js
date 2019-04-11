@@ -18,8 +18,11 @@ async function request(method, actions, dispatch, url, data, ...otherArgs) {
             : '?'
         url += `${symbol}ts=${ts}`
     }
+
+    let resp;
+
     try {
-        let resp = await superagent[method](url).send(data);
+        resp = await superagent[method](url).send(data);
         dispatch({
             type: actions.SUCCESS,
             data: resp,
@@ -32,6 +35,8 @@ async function request(method, actions, dispatch, url, data, ...otherArgs) {
             params: otherArgs || []
         });
     }
+
+    return resp;
 }
 
 export function actionCreator(type, data, params = []) {
