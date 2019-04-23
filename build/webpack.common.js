@@ -31,11 +31,17 @@ module.exports = {
                     'css-loader'
                 ],
             }, {
-                test: /\.(woff2?|ttf|eot|svg|png|jpe?g|gif)$/,
+                test: /\.(woff2?|ttf|eot|svg|png|jpe?g|gif|pdf)$/,
                 use: [{
                     loader: 'file-loader',
                     options: {
-                        name: '[path][name].[ext]'
+                        name: '[name].[ext]',
+                        outputPath: (url, resourcePath, context) => {
+                            if(/\.(svg|png|jpe?g|gif)/.test(url)) {
+                                return `images/${url}`;
+                            }
+                            return `fonts/${url}`;
+                        }
                     }
                 }]
             }, {

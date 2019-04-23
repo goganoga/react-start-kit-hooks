@@ -1,14 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { Store } from 'utils/store';
 import { fetchDataAction } from 'actions';
-import './style.css';
+/*import './style.css';*/
 
 const Index = (props) => {
-	let { state, dispatch } = useContext(Store);
+    let { state, dispatch } = useContext(Store);
     useEffect(() => {
         fetchDataAction(dispatch)
     }, [])
-	console.log(state)
+    console.log(state)
     return (
         <div>
             <ul>

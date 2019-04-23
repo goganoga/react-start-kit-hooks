@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import DefaultLayout from 'components/App';
 import Index from 'components/Index';
+import 'scss/main.scss';
 
 import {StoreProvider} from 'utils/store';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
