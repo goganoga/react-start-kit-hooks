@@ -31,7 +31,7 @@ module.exports = {
                     'css-loader'
                 ],
             }, {
-                test: /\.woff2?$|\.ttf$|\.eot$|\.svg$|\.png|\.jpe?g|\.gif$/,
+                test: /\.(woff2?|ttf|eot|svg|png|jpe?g|gif)$/,
                 use: [{
                     loader: 'file-loader',
                     options: {
@@ -41,7 +41,7 @@ module.exports = {
             }, {
                 test: /\.scss$/,
                 use: [
-                    'style-loader',
+                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
                     'css-loader',
                     'sass-loader'
                 ]
@@ -60,7 +60,7 @@ module.exports = {
             template: './static/index.html'
         }),
         new MiniCssExtractPlugin({
-            filename: devMode ? '[name].css' : '[name].[hash].css',
+            filename: devMode ? '[name].css' : 'style.[hash].css',
             chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
         })
     ]
