@@ -13,14 +13,12 @@ async function request(method, actions, dispatch, url, data, ...otherArgs) {
 
     if (method == 'get') {
         let ts = new Date().getTime();
-        let symbol = ~url.indexOf('?')
-            ? '&'
-            : '?'
-        url += `${symbol}ts=${ts}`
+        let symbol = ~url.indexOf('?') ? '&' : '?';
+        Object.assign(data, {ts});
     }
 
     try {
-        let resp = await superagent[method](url).send(data);
+        let resp = await superagent[method](url)[method == 'get' ? 'query' : 'send'](data);
         dispatch({
             type: actions.SUCCESS,
             data: resp,
