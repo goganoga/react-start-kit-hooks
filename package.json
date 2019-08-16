@@ -24,8 +24,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@babel/core": "^7.4.0",
-    "@babel/preset-env": "^7.4.2",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^2.0.1",

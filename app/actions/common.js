@@ -14,7 +14,7 @@ async function request(method, actions, dispatch, url, data, ...otherArgs) {
     if (method == 'get') {
         let ts = new Date().getTime();
         let symbol = ~url.indexOf('?') ? '&' : '?';
-        Object.assign(data, {ts});
+        data ? Object.assign(data, {ts}) : url += `${symbol}ts=${ts}`;
     }
 
     try {
