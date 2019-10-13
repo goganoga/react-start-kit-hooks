@@ -8,11 +8,12 @@ const Index = (props) => {
     useEffect(() => {
         fetchDataAction(dispatch)
     }, [])
-    console.log(state)
+
+    let {data} = state.test;
     return (
         <div>
             <ul>
-               {state.test.map((item, i) =>
+               {data.map((item, i) =>
                     (<li key={i}>{item.url}</li>)
                 )}
             </ul>
