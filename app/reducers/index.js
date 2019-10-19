@@ -1,11 +1,8 @@
 import combineReducers from 'utils/combinereducers';
-import {test} from 'reducers/test';
+import test, {test_struct} from 'reducers/test';
 
 export const initialState = {
-    test: {
-        pending: null,
-        data: []
-    }
+    test: test_struct,
 };
 
 export default combineReducers({
