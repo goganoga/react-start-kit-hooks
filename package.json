@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/polyfill": "^7.4.4",
+    "core-js": "^3.4.1",
+    "regenerator-runtime": "^0.13.3",
+    "form-serialize": "^0.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
-    "react-tooltip": "^3.11.1",
-    "superagent": "^5.0.2",
-    "form-serialize": "^0.7.2"
+    "react-tooltip": "^3.11.1"
   },
   "scripts": {
     "start": "ENV=development webpack-dev-server --config build/webpack.dev.js --progress",

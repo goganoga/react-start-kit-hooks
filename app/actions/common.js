@@ -1,38 +1,41 @@
 'use strict';
 
-import superagent from 'superagent';
-
 export const get  = (...args) => request('get',  ...args);
 export const post = (...args) => request('post', ...args);
-
-get.makeQueryString = 'makeQueryString';
 
 async function request(method, actions, dispatch, url, data, ...otherArgs) {
 
     dispatch({ type: actions.REQUEST, params: otherArgs || [] });
 
     if (method == 'get') {
-        let ts = new Date().getTime();
         let symbol = ~url.indexOf('?') ? '&' : '?';
-        data ? Object.assign(data, {ts}) : url += `${symbol}ts=${ts}`;
+        if(data) {
+            let str = Object.keys(data).map(key => {
+                return key + '=' + data[key];
+            }).join('&');
+            url += `${symbol}${str}`;
+        }
+    }
+    let options = {
+        method,
+        body: method != 'get' ? JSON.stringify(data) : undefined
     }
 
-    try {
-        let resp = await superagent[method](url)[method == 'get' ? 'query' : 'send'](data);
+    return await window.fetch(url, options)
+    .then(response => response.json())
+    .then(data => {
         dispatch({
             type: actions.SUCCESS,
-            data: resp,
+            data,
             params: otherArgs || []
         });
-        return resp;
-    } catch(err) {
+    }, err => {
         dispatch({
             type: actions.FAILURE,
             err,
             params: otherArgs || []
         });
-        return err;
-    }
+    });
 }
 
 export function actionCreator(type, data, params = []) {

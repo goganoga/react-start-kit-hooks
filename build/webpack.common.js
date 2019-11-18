@@ -5,7 +5,7 @@ const path = require('path');
 const devMode = process.env.ENV !== 'production';
 
 module.exports = {
-    entry: ['@babel/polyfill', './app/index'],
+    entry: ['core-js', 'regenerator-runtime', './app/index'],
     output: {
         filename: devMode ? 'bundle.js' : 'bundle.[hash].js',
         path: path.resolve(__dirname, '../dist'),

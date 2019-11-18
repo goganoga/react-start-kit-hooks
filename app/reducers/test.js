@@ -6,8 +6,8 @@ export const test_struct = {
     data: []
 }
 
-const test = boundApiReducer(actions.FETCH_DATA, new Array, (action) => {
-    let { body: {_embedded: { episodes } } } = action.data;
+const test = boundApiReducer(actions.FETCH_DATA, new Array, null, (action) => {
+    let { _embedded: { episodes } } = action.data;
     return episodes;
 });
 
