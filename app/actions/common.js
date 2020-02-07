@@ -3,11 +3,12 @@
 export const get  = (...args) => request('get',  ...args);
 export const post = (...args) => request('post', ...args);
 
-async function request(method, actions, dispatch, url, data, ...otherArgs) {
+async function request(method, actions, dispatch, url, data, settings = null, ...otherArgs) {
 
     dispatch({ type: actions.REQUEST, params: otherArgs || [] });
 
     if (method == 'get') {
+        let ts = new Date().getTime();
         let symbol = ~url.indexOf('?') ? '&' : '?';
         if(data) {
             let str = Object.keys(data).map(key => {
@@ -20,22 +21,27 @@ async function request(method, actions, dispatch, url, data, ...otherArgs) {
         method,
         body: method != 'get' ? JSON.stringify(data) : undefined
     }
-
-    return await window.fetch(url, options)
-    .then(response => response.json())
-    .then(data => {
+    if(settings) {
+        options = {...options, ...settings};
+    }
+    try {
+        let resp = await window.fetch(url, options)
+        let data = await resp.json()
         dispatch({
             type: actions.SUCCESS,
             data,
             params: otherArgs || []
         });
-    }, err => {
+        return data;
+    } catch(err) {
         dispatch({
             type: actions.FAILURE,
             err,
             params: otherArgs || []
         });
-    });
+        return {};
+    }
+
 }
 
 export function actionCreator(type, data, params = []) {

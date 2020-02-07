@@ -1,13 +1,13 @@
-export const boundApiReducer = ( type, prepare = action => action.data, extendKey = null ) => {
-    return apiReducer.bind(null, type, prepare, extendKey);
+export const boundApiReducer = ( type, model, extendKey = null, prepare = action => action.data ) => {
+    return apiReducer.bind(null, type, model, extendKey, prepare);
 }
 
-const apiReducer = (type, prepare, extendKey, state, action) => {
+const apiReducer = (type, model, extendKey, prepare, state, action) => {
     switch (action.type) {
     case type.REQUEST:
         var data = {
             pending: true,
-            data: state.data
+            data: model
         }
         return typeof extendKey === 'function' ? Object.assign({}, state, { [extendKey(action)]: data }) : data;
     case type.SUCCESS:
