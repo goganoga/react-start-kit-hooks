@@ -25,8 +25,8 @@ async function request(method, actions, dispatch, url, data, settings = null, ..
         options = {...options, ...settings};
     }
     try {
-        let resp = await window.fetch(url, options)
-        let data = await resp.json()
+        let resp = await window.fetch(url, options);
+        let data = await resp.json();
         dispatch({
             type: actions.SUCCESS,
             data,
