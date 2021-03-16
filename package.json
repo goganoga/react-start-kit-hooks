@@ -37,7 +37,7 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-webpack-plugin": "^2.5.2",
     "file-loader": "^3.0.1",
-    "html-webpack-plugin": "4",
+    "html-webpack-plugin": "^4",
     "mini-css-extract-plugin": "^0.5.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "sass": "^1.32.8",
