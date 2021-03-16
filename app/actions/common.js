@@ -8,7 +8,6 @@ async function request(method, actions, dispatch, url, data, settings = null, ..
     dispatch({ type: actions.REQUEST, params: otherArgs || [] });
 
     if (method == 'get') {
-        let ts = new Date().getTime();
         let symbol = ~url.indexOf('?') ? '&' : '?';
         if(data) {
             let str = Object.keys(data).map(key => {

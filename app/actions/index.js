@@ -1,4 +1,4 @@
-import { ApiActions, actionCreator, get, post } from './common';
+import { ApiActions, get } from './common';
 
 export const actions = new ApiActions(
     'FETCH_DATA',
