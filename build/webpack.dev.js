@@ -8,7 +8,9 @@ module.exports = merge(common, {
     mode: 'development',
     devtool: 'inline-source-map',
     plugins: [
-        new ESLintPlugin()
+        new ESLintPlugin({
+            extensions: ['js', 'jsx']
+        })
     ],
     devServer: {
         historyApiFallback: true,

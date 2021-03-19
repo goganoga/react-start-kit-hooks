@@ -15,7 +15,7 @@ const DefaultLayout = ({component: Component, ...rest}) => {
             }}>
                 <div className="content">
                     <div className="Header">Header</div>
-                        <Component {...matchProps} />
+                    <Component {...matchProps} />
                     <div className="Footer">Footer</div>
                 </div>
             </div>

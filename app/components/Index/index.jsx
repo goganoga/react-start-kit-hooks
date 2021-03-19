@@ -3,7 +3,7 @@ import { Store } from 'utils/store';
 import { fetchDataAction } from 'actions';
 /*import './style.css';*/
 
-const Index = (props) => {
+const Index = () => {
     let { state, dispatch } = useContext(Store);
     useEffect(() => {
         fetchDataAction(dispatch)
@@ -13,7 +13,7 @@ const Index = (props) => {
     return (
         <div>
             <ul>
-               {data.map((item, i) =>
+                {data.map((item, i) =>
                     (<li key={i}>{item.url}</li>)
                 )}
             </ul>

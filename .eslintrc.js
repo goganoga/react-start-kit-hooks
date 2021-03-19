@@ -1,11 +1,22 @@
 module.exports = {
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "settings": {
+        "react": {
+            "version": "detect",
+        }
+    },
     "parserOptions": {
         "ecmaVersion": 2021,
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
     },
-    "plugins": [
-        "react"
-    ],
+    "plugins": ["react"],
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended"
@@ -16,6 +27,8 @@ module.exports = {
         "indent": ["error", 4],
     },
     "globals": {
-        "window": true
+        "window": "readonly",
+        "document": "readonly",
+        "navigator": "readonly"
     }
 }
