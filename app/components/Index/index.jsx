@@ -1,15 +1,17 @@
-import React, { useContext, useEffect } from 'react';
-import { Store } from 'utils/store';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { fetchDataAction } from 'actions';
-/*import './style.css';*/
 
 const Index = () => {
-    let { state, dispatch } = useContext(Store);
-    useEffect(() => {
-        fetchDataAction(dispatch)
-    }, [])
+    const test = useSelector(state => state.test);
+    const dispatch = useDispatch();
 
-    let {data} = state.test;
+    useEffect(() => {
+        fetchDataAction(dispatch);
+    }, []);
+
+    let {data} = test;
+
     return (
         <div>
             <ul>

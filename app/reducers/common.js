@@ -4,7 +4,7 @@ export const boundApiReducer = ( type, prepare = action => action.data, extendKe
 
 var data = {};
 
-const apiReducer = (type, prepare, extendKey, state, action) => {
+const apiReducer = (type, prepare, extendKey, state = null, action) => {
     switch (action.type) {
     case type.REQUEST:
         data = {

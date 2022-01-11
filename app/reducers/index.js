@@ -1,4 +1,4 @@
-import combineReducers from 'utils/combinereducers';
+import {combineReducers} from 'redux';
 import test, {test_struct} from 'reducers/test';
 
 export const initialState = {
@@ -6,5 +6,5 @@ export const initialState = {
 };
 
 export default combineReducers({
-    test,
+    test
 });

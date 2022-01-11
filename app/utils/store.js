@@ -1,10 +1,20 @@
-import React, { useReducer, createContext } from 'react';
 import Reducer, { initialState } from '../reducers';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-export const Store = createContext();
+/*function logger({ getState }) {
+    return next => action => {
+        console.log('will dispatch', action);
+        const returnValue = next(action);
+        console.log('state after dispatch', getState());
+        return returnValue
+    }
+}*/
 
-export const StoreProvider = (props) => {
-    const [ state, dispatch ] = useReducer(Reducer, initialState);
-    let value = {state, dispatch};
-    return <Store.Provider value={value} >{props.children}</Store.Provider>;
-}
+
+const store = createStore(Reducer, initialState, composeWithDevTools(
+    //applyMiddleware(logger)
+    applyMiddleware()
+));
+
+export default store;
