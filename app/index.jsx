@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import DefaultLayout from 'components/App';
 import Index from 'components/Index';
 import 'scss/main.scss';
@@ -18,4 +18,5 @@ const render = (
     </Provider>
 )
 
-ReactDOM.render(render, document.getElementById('root'));
+const root = createRoot(document.getElementById('root'));
+root.render(render);
