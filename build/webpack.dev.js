@@ -1,4 +1,4 @@
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const path = require('path');
 const ESLintPlugin = require('eslint-webpack-plugin');
@@ -14,7 +14,9 @@ module.exports = merge(common, {
     ],
     devServer: {
         historyApiFallback: true,
-        contentBase: path.join(__dirname, '../dist'),
+        static: {
+            directory: path.join(__dirname, 'dist'),
+        },
         compress: true,
         open : true,
         port: PORT || 9000

@@ -1,15 +1,16 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 const devMode = process.env.ENV !== 'production';
 
 module.exports = {
     entry: ['core-js', 'regenerator-runtime', './app/index'],
     output: {
-        filename: devMode ? 'bundle.js' : 'bundle.[hash].js',
+        filename: devMode ? '[name].bundle.js' : '[name].bundle.[hash].js',
         path: path.resolve(__dirname, '../dist'),
-        publicPath: devMode ? '/' : '/static/'
+        publicPath: devMode ? '/' : '/static/',
+        chunkFilename: '[id].[chunkhash].js',
     },
     module: {
         rules: [
@@ -67,8 +68,8 @@ module.exports = {
             template: './static/index.html'
         }),
         new MiniCssExtractPlugin({
-            filename: devMode ? '[name].css' : 'style.[hash].css',
-            chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+            filename: devMode ? '[name].css' : '[name].style.[hash].css',
+            chunkFilename: devMode ? '[id].css' : '[id].[chunkhash].css',
         })
     ]
 };
